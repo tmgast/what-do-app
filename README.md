@@ -7,25 +7,47 @@ What Do is just a simple mapping application designed to store and search intere
 The app should function very similar between desktop and mobile.
 
 [ ] - functional front-end
-    [ x ] - load map
+
+    [x] - load map
+
     [ ] - show point of interest
+
         [ ] - title
+
         [ ] - rating
+
         [ ] - activity type
+
         [ ] - address
+
         [ ] - g-map link
+
         [ ] - show images
+
         [ ] - show YouTube videos
+
     [ ] - search
+
         [ ] - city
+
         [ ] - region
+
         [ ] - filter activity type
+
         [ ] - visited
+
         [ ] - saved
+
     [ ] - user
+
         [ ] - profile
+
         [ ] - lists/trips
+
         [ ] - groups
+
         [ ] - visited locations
+
         [ ] - saved locations
+
         [ ] - videos
