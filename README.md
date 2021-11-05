@@ -1,24 +1,7 @@
-# shrine-map
+# What Do
 
-## Project setup
-```
-yarn install
-```
+What Do is just a simple mapping application designed to store and search interesting places and activities to visit. As I add features, more will be included in this repo.
 
-### Compiles and hot-reloads for development
-```
-yarn serve
-```
+## TODO
 
-### Compiles and minifies for production
-```
-yarn build
-```
-
-### Lints and fixes files
-```
-yarn lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+TBD
