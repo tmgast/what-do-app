@@ -1,9 +1,10 @@
 <template>
   <div class="home">
+    <MainPanel />
     <l-map
       v-model="zoom"
       v-model:zoom="zoom"
-      :center="[47.41322, -1.219482]"
+      :center="[34.6937, 135.5023]"
     >
       <l-tile-layer
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
@@ -17,19 +18,19 @@
 import {
   LMap,
   LTileLayer,
-  LControlLayers,
 } from '@vue-leaflet/vue-leaflet';
 import { ref } from 'vue';
+import MainPanel from '@/components/MainPanel.vue';
 
 export default {
   name: 'Home',
   components: {
+    MainPanel,
     LMap,
     LTileLayer,
-    LControlLayers,
   },
   setup() {
-    const zoom = ref(5);
+    const zoom = ref(12);
 
     return {
       zoom,
