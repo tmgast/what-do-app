@@ -11,7 +11,7 @@
       <i class="large material-icons">settings</i>
     </a>
     <ul>
-      <li v-if="anonymous()"><a class="btn-floating red darken-2">
+      <li v-if="!$store.getters.getUser"><a class="btn-floating red darken-2">
         <i class="material-icons">person_outline</i>
       </a></li>
       <li v-else><a class="btn-floating deep-purple darken-1">
@@ -30,11 +30,6 @@ const menu = ref(null);
 onMounted(() => {
   M.FloatingActionButton.init(menu.value, { direction: 'right', hoverEnabled: false });
 });
-
-// replace with user-check
-function anonymous() {
-  return true;
-}
 </script>
 
 <style lang="scss">
