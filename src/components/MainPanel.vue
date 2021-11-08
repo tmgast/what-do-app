@@ -5,6 +5,53 @@
           <input id="search" type="search" placeholder="Search">
         </div>
       </div>
+
+      <div class="filter-container">
+        <div>
+          <a
+            class="waves-effect waves-light btn filter-btn blue-grey"
+            :class="store.state.filters.length > 0?' bt lighten-4':' wt darken-4'"
+            @click="store.commit('clearFilters')"
+            >
+            <span>filters</span>
+          </a>
+          <a
+            class="btn-floating waves-effect waves-light"
+            :class="hasFilter('hiking')?' purple':'red' "
+            @click="store.commit('toggleFilter','hiking')"
+            >
+            <i class="material-icons">filter_hdr</i>
+          </a>
+          <a
+            class="btn-floating waves-effect waves-light"
+            :class="hasFilter('biking')?' purple':'red' "
+            @click="store.commit('toggleFilter','biking')"
+            >
+            <i class="material-icons">directions_bike</i>
+          </a>
+          <a
+            class="btn-floating waves-effect waves-light"
+            :class="hasFilter('gaming')?' purple':'red' "
+            @click="store.commit('toggleFilter','gaming')"
+            >
+            <i class="material-icons">casino</i>
+          </a>
+          <a
+            class="btn-floating waves-effect waves-light"
+            :class="hasFilter('photography')?' purple':'red' "
+            @click="store.commit('toggleFilter','photography')"
+            >
+            <i class="material-icons">camera_alt</i>
+          </a>
+          <a
+            class="btn-floating waves-effect waves-light"
+            :class="hasFilter('crafting')?' purple':'red' "
+            @click="store.commit('toggleFilter','crafting')"
+            >
+            <i class="material-icons">brush</i>
+          </a>
+        </div>
+      </div>
   </div>
   <div ref="menu" class="fixed-action-btn menu" id="menu">
     <a class="btn-floating btn-large deep-purple lighten-2">
@@ -24,8 +71,18 @@
 <script setup>
 import M from 'materialize-css';
 import { onMounted, ref } from 'vue';
+import { useStore } from 'vuex';
 
+const store = useStore();
 const menu = ref(null);
+
+function hasFilter(f) {
+  if (store.state.filters.includes(f)
+    || store.state.filters.length === 0) {
+    return true;
+  }
+  return false;
+}
 
 onMounted(() => {
   M.FloatingActionButton.init(menu.value, { direction: 'right', hoverEnabled: false });
@@ -45,6 +102,28 @@ onMounted(() => {
     background: white;
     border-radius: 50px;
     margin-left: 25%;
+  }
+
+  .filter-container {
+    margin-left: 25%;
+  }
+
+  .filter-btn {
+    opacity: 40%;
+    font-weight: 700;
+    border-radius: 25px;
+  }
+
+  .wt {
+    color: #fff;
+  }
+
+  .bt {
+    color: #000;
+  }
+
+  .btn-floating {
+    margin-left: 5px;
   }
 }
 

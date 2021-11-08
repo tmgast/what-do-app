@@ -37,7 +37,6 @@ import {
 import image from '@/assets/logo.png';
 import MainPanel from '@/components/MainPanel.vue';
 
-// 1030923985 MS support id
 export default {
   name: 'Home',
   components: {

@@ -3,6 +3,7 @@ import { createStore } from 'vuex';
 export default createStore({
   state: {
     locations: [],
+    filters: [],
     user: null,
   },
   mutations: {
@@ -28,12 +29,28 @@ export default createStore({
         },
       ];
     },
+
+    clearFilters(state) {
+      state.filters = [];
+    },
+
+    toggleFilter(state, f) {
+      if (state.filters.includes(f)) {
+        state.filters = state.filters.filter((v) => v !== f);
+      } else {
+        state.filters.push(f);
+      }
+    },
   },
   actions: {
   },
   modules: {
   },
   getters: {
+    getFilters(state) {
+      return state.filters;
+    },
+
     getLocations(state) {
       return state.locations;
     },
