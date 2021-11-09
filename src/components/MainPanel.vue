@@ -20,6 +20,9 @@
           <MapQuickFilter label="gaming" icon="casino" />
           <MapQuickFilter label="photography" icon="camera_alt" />
           <MapQuickFilter label="crafting" icon="brush" />
+          <MapQuickFilter label="landmark" icon="temple_buddhist" />
+          <MapQuickFilter label="music" icon="theater_comedy" />
+          <MapQuickFilter label="park" icon="attractions" />
         </div>
       </div>
   </div>
