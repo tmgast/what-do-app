@@ -10,46 +10,16 @@
         <div>
           <a
             class="waves-effect waves-light btn filter-btn blue-grey"
-            :class="store.state.filters.length > 0?' bt lighten-4':' wt darken-4'"
-            @click="store.commit('clearFilters')"
+            :class="$store.state.filters.length > 0?' bt lighten-4':' wt darken-4'"
+            @click="$store.commit('clearFilters')"
             >
             <span>filters</span>
           </a>
-          <a
-            class="btn-floating waves-effect waves-light"
-            :class="hasFilter('hiking')?' purple':'red' "
-            @click="store.commit('toggleFilter','hiking')"
-            >
-            <i class="material-icons">filter_hdr</i>
-          </a>
-          <a
-            class="btn-floating waves-effect waves-light"
-            :class="hasFilter('biking')?' purple':'red' "
-            @click="store.commit('toggleFilter','biking')"
-            >
-            <i class="material-icons">directions_bike</i>
-          </a>
-          <a
-            class="btn-floating waves-effect waves-light"
-            :class="hasFilter('gaming')?' purple':'red' "
-            @click="store.commit('toggleFilter','gaming')"
-            >
-            <i class="material-icons">casino</i>
-          </a>
-          <a
-            class="btn-floating waves-effect waves-light"
-            :class="hasFilter('photography')?' purple':'red' "
-            @click="store.commit('toggleFilter','photography')"
-            >
-            <i class="material-icons">camera_alt</i>
-          </a>
-          <a
-            class="btn-floating waves-effect waves-light"
-            :class="hasFilter('crafting')?' purple':'red' "
-            @click="store.commit('toggleFilter','crafting')"
-            >
-            <i class="material-icons">brush</i>
-          </a>
+          <MapQuickFilter label="hiking" icon="filter_hdr" />
+          <MapQuickFilter label="biking" icon="directions_bike" />
+          <MapQuickFilter label="gaming" icon="casino" />
+          <MapQuickFilter label="photography" icon="camera_alt" />
+          <MapQuickFilter label="crafting" icon="brush" />
         </div>
       </div>
   </div>
@@ -71,18 +41,9 @@
 <script setup>
 import M from 'materialize-css';
 import { onMounted, ref } from 'vue';
-import { useStore } from 'vuex';
+import MapQuickFilter from '@/components/MapQuickFilter.vue';
 
-const store = useStore();
 const menu = ref(null);
-
-function hasFilter(f) {
-  if (store.state.filters.includes(f)
-    || store.state.filters.length === 0) {
-    return true;
-  }
-  return false;
-}
 
 onMounted(() => {
   M.FloatingActionButton.init(menu.value, { direction: 'right', hoverEnabled: false });
