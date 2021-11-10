@@ -3,7 +3,9 @@ import { createStore } from 'vuex';
 export default createStore({
   state: {
     locations: [],
+    results: [],
     filters: [],
+    search: '',
     user: null,
   },
   mutations: {
@@ -31,10 +33,14 @@ export default createStore({
           rating: 4.5,
         },
       ];
+
+      this.commit('applyFilters');
     },
 
     clearFilters(state) {
       state.filters = [];
+
+      this.commit('applyFilters');
     },
 
     toggleFilter(state, f) {
@@ -42,6 +48,15 @@ export default createStore({
         state.filters = state.filters.filter((v) => v !== f);
       } else {
         state.filters.push(f);
+      }
+      this.commit('applyFilters');
+    },
+
+    applyFilters(state) {
+      if (!state.filters.length && !state.search.length) {
+        state.results = state.locations.slice(0);
+      } else {
+        state.results = state.locations.filter((location) => state.filters.includes(location.type));
       }
     },
   },
@@ -54,12 +69,12 @@ export default createStore({
       return state.filters;
     },
 
-    getLocations(state) {
-      if (!state.filters.length) {
-        return state.locations;
-      }
+    hasFilter(state, f) {
+      return state.filters.includes(f);
+    },
 
-      return state.locations.filter((location) => state.filters.includes(location.type));
+    getLocations(state) {
+      return state.results;
     },
 
     getUser(state) {

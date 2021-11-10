@@ -2,7 +2,7 @@
   <div class="search-container">
       <div class="search-wrapper">
         <div class="input-field search-field">
-          <input id="search" type="search" placeholder="Search">
+          <input v-model="search" id="search" type="search" placeholder="Search">
         </div>
       </div>
 
@@ -15,14 +15,17 @@
             >
             <span>filters</span>
           </a>
-          <MapQuickFilter label="hiking" icon="filter_hdr" />
+          <MapQuickFilter enabled holding="$store.getters.hasFilter('hiking')"
+            label="hiking" icon="filter_hdr"
+            @click="$store.commit('toggleFilter', 'hiking')" />
           <MapQuickFilter label="biking" icon="directions_bike" />
           <MapQuickFilter label="gaming" icon="casino" />
           <MapQuickFilter label="photography" icon="camera_alt" />
           <MapQuickFilter label="crafting" icon="brush" />
           <MapQuickFilter label="landmark" icon="temple_buddhist" />
           <MapQuickFilter label="music" icon="theater_comedy" />
-          <MapQuickFilter label="park" icon="attractions" />
+          <MapQuickFilter label="park" icon="attractions"
+            @click="$store.commit('toggleFilter', 'park')" />
         </div>
       </div>
   </div>
@@ -44,9 +47,14 @@
 <script setup>
 import M from 'materialize-css';
 import { onMounted, ref } from 'vue';
+// import { useStore } from 'vuex';
 import MapQuickFilter from '@/components/MapQuickFilter.vue';
 
 const menu = ref(null);
+// const store = useStore();
+// let search = ref(null);
+
+// search = computed(() => store.state.search);
 
 onMounted(() => {
   M.FloatingActionButton.init(menu.value, { direction: 'right', hoverEnabled: false });

@@ -10,7 +10,7 @@
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
       ></l-tile-layer>
       <l-control-layers />
-      <div ref="markers" class="markers" :mounted="$store.commit('updateLocations')">
+      <div ref="markers" class="markers">
       <l-marker
         v-for="location in $store.getters.getLocations"
         :key="location.coords.lat"
@@ -25,6 +25,7 @@
 
 <script>
 import { ref } from 'vue';
+import { useStore } from 'vuex';
 import {
   LMap,
   LTileLayer,
@@ -53,6 +54,8 @@ export default {
     const zoom = ref(12);
     const iconWidth = 55;
     const iconHeight = 55;
+    const store = useStore();
+    store.commit('updateLocations');
 
     function iconUrl() {
       return image;
@@ -74,7 +77,6 @@ export default {
     };
   },
 };
-
 </script>
 
 <style lang="scss">
