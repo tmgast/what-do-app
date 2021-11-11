@@ -15,17 +15,12 @@
             >
             <span>filters</span>
           </a>
-          <MapQuickFilter enabled holding="$store.getters.hasFilter('hiking')"
-            label="hiking" icon="filter_hdr"
-            @click="$store.commit('toggleFilter', 'hiking')" />
-          <MapQuickFilter label="biking" icon="directions_bike" />
-          <MapQuickFilter label="gaming" icon="casino" />
-          <MapQuickFilter label="photography" icon="camera_alt" />
-          <MapQuickFilter label="crafting" icon="brush" />
-          <MapQuickFilter label="landmark" icon="temple_buddhist" />
-          <MapQuickFilter label="music" icon="theater_comedy" />
-          <MapQuickFilter label="park" icon="attractions"
-            @click="$store.commit('toggleFilter', 'park')" />
+            <Component :is="MapQuickFilter"
+              v-for="poi in quickFilters"
+              :key="poi.name"
+              :icon="poi.icon"
+              :enabled=hasFilter(poi.name)
+              @click="$store.commit('toggleFilter', poi.name)" />
         </div>
       </div>
   </div>
@@ -47,14 +42,30 @@
 <script setup>
 import M from 'materialize-css';
 import { onMounted, ref } from 'vue';
-// import { useStore } from 'vuex';
+import { useStore } from 'vuex';
 import MapQuickFilter from '@/components/MapQuickFilter.vue';
 
-const menu = ref(null);
-// const store = useStore();
-// let search = ref(null);
+const quickFilters = [
+  {
+    name: 'landmark',
+    icon: 'temple_buddhist',
+  },
+  {
+    name: 'music',
+    icon: 'theater_comedy',
+  },
+  {
+    name: 'park',
+    icon: 'attractions',
+  },
+];
 
-// search = computed(() => store.state.search);
+const store = useStore();
+const menu = ref(null);
+
+function hasFilter(f) {
+  return (store.getters.getFilters).indexOf(f) >= 0;
+}
 
 onMounted(() => {
   M.FloatingActionButton.init(menu.value, { direction: 'right', hoverEnabled: false });

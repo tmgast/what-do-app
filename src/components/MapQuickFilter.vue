@@ -11,10 +11,11 @@
 import { defineProps } from 'vue';
 
 const props = defineProps({
-  label: String,
   icon: String,
   enabled: Boolean,
 });
+
+console.log(props);
 </script>
 
 <style>
