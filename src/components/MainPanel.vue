@@ -6,6 +6,8 @@
         </div>
       </div>
 
+      <Component :is="SideMenu" />
+
       <div class="filter-container">
         <div>
           <a
@@ -24,26 +26,12 @@
         </div>
       </div>
   </div>
-  <div ref="menu" class="fixed-action-btn menu" id="menu">
-    <a class="btn-floating btn-large deep-purple lighten-2">
-      <i class="large material-icons">settings</i>
-    </a>
-    <ul>
-      <li v-if="!$store.getters.getUser"><a class="btn-floating red darken-2">
-        <i class="material-icons">person_outline</i>
-      </a></li>
-      <li v-else><a class="btn-floating deep-purple darken-1">
-        <i class="material-icons">person</i>
-      </a></li>
-    </ul>
-  </div>
 </template>
 
 <script setup>
-import M from 'materialize-css';
-import { onMounted, ref } from 'vue';
 import { useStore } from 'vuex';
 import MapQuickFilter from '@/components/MapQuickFilter.vue';
+import SideMenu from '@/components/SideMenu.vue';
 
 const quickFilters = [
   {
@@ -61,15 +49,9 @@ const quickFilters = [
 ];
 
 const store = useStore();
-const menu = ref(null);
-
 function hasFilter(f) {
   return (store.getters.getFilters).indexOf(f) >= 0;
 }
-
-onMounted(() => {
-  M.FloatingActionButton.init(menu.value, { direction: 'right', hoverEnabled: false });
-});
 </script>
 
 <style lang="scss">
