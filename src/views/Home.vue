@@ -1,7 +1,9 @@
 <template>
   <div class="home">
+    <SideMenu />
     <MainPanel />
     <l-map
+      class="map"
       v-model="zoom"
       v-model:zoom="zoom"
       :center="[34.6937, 135.5023]"
@@ -36,12 +38,14 @@ import {
   // LPopup,
 } from '@vue-leaflet/vue-leaflet';
 import image from '@/assets/logo.png';
+import SideMenu from '@/components/SideMenu.vue';
 import MainPanel from '@/components/MainPanel.vue';
 
 export default {
   name: 'Home',
   components: {
     MainPanel,
+    SideMenu,
     LMap,
     LTileLayer,
     LIcon,
@@ -83,5 +87,9 @@ export default {
   .home {
     height: 100%;
     width: 100%;
+  }
+
+  .map {
+    z-index: 1;
   }
 </style>

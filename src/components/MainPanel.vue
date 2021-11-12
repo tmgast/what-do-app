@@ -6,8 +6,6 @@
         </div>
       </div>
 
-      <Component :is="SideMenu" />
-
       <div class="filter-container">
         <div>
           <a
@@ -31,7 +29,6 @@
 <script setup>
 import { useStore } from 'vuex';
 import MapQuickFilter from '@/components/MapQuickFilter.vue';
-import SideMenu from '@/components/SideMenu.vue';
 
 const quickFilters = [
   {
@@ -56,7 +53,7 @@ function hasFilter(f) {
 
 <style lang="scss">
 .search-container {
-  z-index: 1000;
+  z-index: 10;
   width:  100%;
   position: absolute;
   top: 0;
