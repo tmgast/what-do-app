@@ -1,7 +1,7 @@
 <template>
   <a
     class="btn-floating waves-effect waves-light"
-    :class="props.enabled ?' purple':'red' "
+    :class="props.enabled ?' deep-purple':'red lighten-2' "
     >
       <i class="material-icons">{{ props.icon }}</i>
   </a>

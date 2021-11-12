@@ -5,6 +5,7 @@ export default createStore({
     locations: [],
     results: [],
     filters: [],
+    selected: null,
     search: '',
     user: null,
   },
@@ -12,6 +13,7 @@ export default createStore({
     updateLocations(state) {
       state.locations = [
         {
+          id: 1,
           name: 'Osaka Castle',
           type: 'landmark',
           coords: { lat: 34.6864842, lon: 135.5240135 },
@@ -19,6 +21,7 @@ export default createStore({
           rating: 4.0,
         },
         {
+          id: 2,
           name: 'The Symphony Hall',
           type: 'music',
           coords: { lat: 34.7014543, lon: 135.4845376 },
@@ -26,6 +29,7 @@ export default createStore({
           rating: 4.3,
         },
         {
+          id: 3,
           name: 'Universal Studios Japan',
           type: 'park',
           coords: { lat: 34.6664671, lon: 135.4332258 },
@@ -35,6 +39,10 @@ export default createStore({
       ];
 
       this.commit('applyFilters');
+    },
+
+    selectLocation(state, l) {
+      state.selected = state.locations.find((location) => location.id === l);
     },
 
     clearFilters(state) {
