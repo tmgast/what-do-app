@@ -9,9 +9,9 @@ The app should function very similar between desktop and mobile.
 
     [ ] - functional front-end
 
-        [ ] - load map
+        [x] - load map
 
-        [ ] - show point of interest
+        [-] - show point of interest
 
             [ ] - title
 
