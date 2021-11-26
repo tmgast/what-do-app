@@ -10,6 +10,7 @@
   "dependencies": {
     "@types/leaflet": "^1.5.7",
     "@vue-leaflet/vue-leaflet": "^0.6.1",
+    "axios": "^0.24.0",
     "core-js": "^3.6.5",
     "leaflet": "^1.6",
     "materialize-css": "^1.0.0-rc.2",
