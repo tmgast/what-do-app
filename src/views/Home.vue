@@ -15,9 +15,9 @@
       <div ref="markers" class="markers">
       <l-marker
         v-for="location in $store.getters.getLocations"
-        :key="location.id"
+        :key="location._id"
         :lat-lng="[location.latitude, location.longitude]"
-        @click="$store.commit('selectLocation', location.id)"
+        @click="$store.commit('selectLocation', location._id)"
         >
         <l-icon :html="iconHtml()" :icon-url="iconUrl()" :icon-size="iconSize()" />
       </l-marker>
