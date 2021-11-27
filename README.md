@@ -10,6 +10,8 @@ The app should function very similar between desktop and mobile.
     [ ] - functional front-end
 
         [x] - load map
+        
+        [x] - connect to API server
 
         [-] - show point of interest
 
@@ -30,6 +32,8 @@ The app should function very similar between desktop and mobile.
         [ ] - search
 
             [ ] - city
+
+            [ ] - randomize
 
             [ ] - region
 
@@ -52,3 +56,13 @@ The app should function very similar between desktop and mobile.
             [ ] - saved locations
 
             [ ] - videos
+
+        [ ] - itinerary
+
+            [ ] - add location to list
+
+            [ ] - add user to itinerary
+
+            [ ] - auto-generate itinerary
+
+               [ ] - requirements fitlering
