@@ -15,7 +15,6 @@ export default createStore({
       APIService.getLocations()
         .then((response) => {
           state.locations = response.data;
-          console.log(response);
           this.commit('applyFilters');
         })
         .catch((error) => {
@@ -56,6 +55,24 @@ export default createStore({
         state.results = state.locations.filter((location) => state.filters.includes(location.type));
       }
     },
+    async getLogin(state) {
+      try {
+        console.log(state.auth);
+        /* eslint no-underscore-dangle: 0 */
+        const gUser = await state.auth.signIn();
+
+        if (!gUser) {
+          return null;
+        }
+
+        state.user = gUser;
+        console.log(gUser);
+        return true;
+      } catch (error) {
+        console.log(error);
+        return null;
+      }
+    },
   },
   actions: {
   },
@@ -80,6 +97,10 @@ export default createStore({
       }
 
       return false;
+    },
+
+    isLoggedIn(state) {
+      return state.user !== null;
     },
   },
 });

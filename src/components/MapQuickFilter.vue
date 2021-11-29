@@ -14,8 +14,6 @@ const props = defineProps({
   icon: String,
   enabled: Boolean,
 });
-
-console.log(props);
 </script>
 
 <style>

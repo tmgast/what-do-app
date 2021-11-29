@@ -4,15 +4,22 @@
       <div class="background">
         <img class="responsive-img" src="@/assets/background.jpg">
       </div>
-      <a href="#user"><img class="circle" src="@/assets/logo.png"></a>
-      <a href="#name"><span class="white-text name">John Doe</span></a>
-      <a href="#email"><span class="white-text email">jdandturk@gmail.com</span></a>
+      <div v-if="$store.getters.isLoggedIn">
+        <a href="#user"><img class="circle" src="@/assets/logo.png"></a>
+        <a href="#name"><span class="white-text name">John Doe</span></a>
+        <a href="#email"><span class="white-text email">jdandturk@gmail.com</span></a>
+      </div>
+      <div v-else>
+        <button @click="this.$store.commit('getLogin')">LOGIN</button>
+      </div>
     </div></li>
-    <li><a href="#!"><i class="material-icons">settings</i>Account Settings</a></li>
-    <li><a href="#!">Itineraries</a></li>
-    <li><div class="divider"></div></li>
-    <li><a class="subheader">Friends</a></li>
-    <li><a class="waves-effect" href="#!">Share</a></li>
+    <div v-if="$store.getters.isLoggedIn">
+      <li><a href="#!"><i class="material-icons">settings</i>Account Settings</a></li>
+      <li><a href="#!">Itineraries</a></li>
+      <li><div class="divider"></div></li>
+      <li><a class="subheader">Friends</a></li>
+      <li><a class="waves-effect" href="#!">Share</a></li>
+    </div>
   </ul>
   <div ref="menu" class="fixed-action-btn menu" id="menu">
     <a href="#"
@@ -25,7 +32,10 @@
 
 <script setup>
 import M from 'materialize-css';
-import { onMounted, ref } from 'vue';
+import {
+  onMounted,
+  ref,
+} from 'vue';
 
 const sidenav = ref(null);
 
