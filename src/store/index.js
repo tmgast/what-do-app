@@ -1,5 +1,11 @@
 import { createStore } from 'vuex';
+import VuexPersistence from 'vuex-persist';
 import APIService from '@/services/APIService';
+
+const vuexLocal = new VuexPersistence({
+  storage: window.sessionStorage,
+  reducer: (state) => ({ user: state.user, search: state.search, filters: state.filters }),
+});
 
 export default createStore({
   state: {
@@ -8,9 +14,32 @@ export default createStore({
     filters: [],
     selected: null,
     search: '',
-    user: null,
+    user: {
+      email: '',
+      name: '',
+      imageUrl: '',
+    },
   },
   mutations: {
+    async getLogin(state) {
+      try {
+        const gUser = await state.auth.signIn();
+
+        if (!gUser) {
+          return;
+        }
+
+        const profile = gUser.getBasicProfile();
+        state.user = {
+          email: profile.getEmail(),
+          name: profile.getName(),
+          imageUrl: profile.getImageUrl(),
+        };
+      } catch (error) {
+        console.log(error);
+      }
+    },
+
     updateLocations(state) {
       APIService.getLocations()
         .then((response) => {
@@ -55,24 +84,6 @@ export default createStore({
         state.results = state.locations.filter((location) => state.filters.includes(location.type));
       }
     },
-    async getLogin(state) {
-      try {
-        console.log(state.auth);
-        /* eslint no-underscore-dangle: 0 */
-        const gUser = await state.auth.signIn();
-
-        if (!gUser) {
-          return null;
-        }
-
-        state.user = gUser;
-        console.log(gUser.getBasicProfile());
-        return true;
-      } catch (error) {
-        console.log(error);
-        return null;
-      }
-    },
   },
   actions: {
   },
@@ -84,8 +95,7 @@ export default createStore({
         return null;
       }
 
-      console.log(state.user.getBasicProfile().getImageUrl());
-      return state.user.getBasicProfile().getImageUrl();
+      return state.user.imageUrl;
     },
 
     getUserName(state) {
@@ -93,7 +103,7 @@ export default createStore({
         return null;
       }
 
-      return state.user.getBasicProfile().getName();
+      return state.user.name;
     },
 
     getUserEmail(state) {
@@ -101,7 +111,7 @@ export default createStore({
         return null;
       }
 
-      return state.user.getBasicProfile().getEmail();
+      return state.user.email;
     },
 
     getFilters(state) {
@@ -125,7 +135,10 @@ export default createStore({
     },
 
     isLoggedIn(state) {
-      return state.user !== null;
+      return state.user.email !== '';
     },
   },
+  plugins: [
+    vuexLocal.plugin,
+  ],
 });
