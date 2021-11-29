@@ -66,7 +66,7 @@ export default createStore({
         }
 
         state.user = gUser;
-        console.log(gUser);
+        console.log(gUser.getBasicProfile());
         return true;
       } catch (error) {
         console.log(error);
@@ -79,6 +79,31 @@ export default createStore({
   modules: {
   },
   getters: {
+    getUserPhoto(state) {
+      if (!state.user) {
+        return null;
+      }
+
+      console.log(state.user.getBasicProfile().getImageUrl());
+      return state.user.getBasicProfile().getImageUrl();
+    },
+
+    getUserName(state) {
+      if (!state.user) {
+        return null;
+      }
+
+      return state.user.getBasicProfile().getName();
+    },
+
+    getUserEmail(state) {
+      if (!state.user) {
+        return null;
+      }
+
+      return state.user.getBasicProfile().getEmail();
+    },
+
     getFilters(state) {
       return state.filters;
     },

@@ -5,9 +5,15 @@
         <img class="responsive-img" src="@/assets/background.jpg">
       </div>
       <div v-if="$store.getters.isLoggedIn">
-        <a href="#user"><img class="circle" src="@/assets/logo.png"></a>
-        <a href="#name"><span class="white-text name">John Doe</span></a>
-        <a href="#email"><span class="white-text email">jdandturk@gmail.com</span></a>
+        <a href="#user">
+          <img class="circle" :src=this.$store.getters.getUserPhoto>
+        </a>
+        <a href="#name">
+          <span class="white-text name">{{ this.$store.getters.getUserName }}</span>
+        </a>
+        <a href="#email">
+          <span class="white-text email">{{ this.$store.getters.getUserEmail }}</span>
+        </a>
       </div>
       <div v-else>
         <button @click="this.$store.commit('getLogin')">LOGIN</button>
