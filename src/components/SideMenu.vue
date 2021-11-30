@@ -16,7 +16,7 @@
         </a>
       </div>
       <div v-else>
-        <button @click="this.$store.commit('getLogin')">LOGIN</button>
+        <button @click="this.$store.dispatch('getLogin')">LOGIN</button>
       </div>
     </div></li>
     <div v-if="$store.getters.isLoggedIn">

@@ -21,23 +21,8 @@ export default createStore({
     },
   },
   mutations: {
-    async getLogin(state) {
-      try {
-        const gUser = await state.auth.signIn();
-
-        if (!gUser) {
-          return;
-        }
-
-        const profile = gUser.getBasicProfile();
-        state.user = {
-          email: profile.getEmail(),
-          name: profile.getName(),
-          imageUrl: profile.getImageUrl(),
-        };
-      } catch (error) {
-        console.log(error);
-      }
+    completeLogin(state, u) {
+      state.user = u;
     },
 
     updateLocations(state) {
@@ -86,6 +71,25 @@ export default createStore({
     },
   },
   actions: {
+    async getLogin({ commit, state }) {
+      try {
+        const gUser = await state.auth.signIn();
+
+        if (!gUser) {
+          return;
+        }
+
+        const profile = gUser.getBasicProfile();
+        const u = {
+          email: profile.getEmail(),
+          name: profile.getName(),
+          imageUrl: profile.getImageUrl(),
+        };
+        commit('completeLogin', u);
+      } catch (error) {
+        console.log(error);
+      }
+    },
   },
   modules: {
   },
