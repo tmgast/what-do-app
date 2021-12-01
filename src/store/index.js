@@ -4,21 +4,31 @@ import APIService from '@/services/APIService';
 
 const vuexLocal = new VuexPersistence({
   storage: window.sessionStorage,
-  reducer: (state) => ({ user: state.user, search: state.search, filters: state.filters }),
+  reducer: (state) => ({
+    user: state.user,
+    position: state.position,
+    filters: state.filters,
+    locations: state.locations,
+    selected: state.selected,
+  }),
 });
 
 export default createStore({
   state: {
-    locations: [],
-    results: [],
-    filters: [],
-    selected: null,
-    search: '',
     user: {
       email: '',
       name: '',
       imageUrl: '',
     },
+    position: {
+      coords: [34.6937, 135.5023],
+      zoom: 10,
+    },
+    locations: [],
+    results: [],
+    filters: [],
+    selected: null,
+    search: '',
   },
   mutations: {
     completeLogin(state, u) {
@@ -66,7 +76,9 @@ export default createStore({
       if (!state.filters.length && !state.search.length) {
         state.results = state.locations.slice(0);
       } else {
-        state.results = state.locations.filter((location) => state.filters.includes(location.type));
+        state.results = state.locations.filter(
+          (location) => state.filters.includes(location.category),
+        );
       }
     },
   },
