@@ -2,7 +2,7 @@
   <div class="search-container">
       <div class="search-wrapper">
         <div class="input-field search-field">
-          <input v-model="search" id="search" type="search" placeholder="Search">
+          <input id="search" type="search" placeholder="Search">
         </div>
       </div>
 
@@ -10,7 +10,6 @@
         <div>
           <a
             class="waves-effect waves-light btn filter-btn blue-grey"
-            :class="$store.state.filters.length > 0?' bt lighten-4':' wt darken-4'"
             @click="$store.commit('clearFilters')"
             >
             <span>filters</span>
@@ -19,7 +18,6 @@
               v-for="poi in quickFilters"
               :key="poi.name"
               :icon="poi.icon"
-              :enabled=hasFilter(poi.name)
               @click="$store.commit('toggleFilter', poi.name)" />
         </div>
       </div>
@@ -27,7 +25,6 @@
 </template>
 
 <script setup>
-import { useStore } from 'vuex';
 import MapQuickFilter from '@/components/MapQuickFilter.vue';
 
 const quickFilters = [
@@ -44,11 +41,6 @@ const quickFilters = [
     icon: 'attractions',
   },
 ];
-
-const store = useStore();
-function hasFilter(f) {
-  return (store.getters.getFilters).indexOf(f) >= 0;
-}
 </script>
 
 <style lang="scss">

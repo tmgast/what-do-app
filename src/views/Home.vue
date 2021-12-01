@@ -12,7 +12,7 @@
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
       ></l-tile-layer>
       <l-control-layers />
-      <div ref="markers" class="markers">
+      <div ref="marker" class="markers">
       <l-marker
         v-for="location in $store.getters.getLocations"
         :key="location._id"
