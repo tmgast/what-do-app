@@ -18,6 +18,7 @@
               v-for="poi in quickFilters"
               :key="poi.name"
               :icon="poi.icon"
+              :enabled="hasFilter(poi.name)"
               @click="$store.commit('toggleFilter', poi.name)" />
         </div>
       </div>
@@ -25,7 +26,10 @@
 </template>
 
 <script setup>
+import { useStore } from 'vuex';
 import MapQuickFilter from '@/components/MapQuickFilter.vue';
+
+const store = useStore();
 
 const quickFilters = [
   {
@@ -41,6 +45,10 @@ const quickFilters = [
     icon: 'attractions',
   },
 ];
+
+function hasFilter(f) {
+  return store.getters.getActiveFilters.indexOf(f) !== -1;
+}
 </script>
 
 <style lang="scss">
