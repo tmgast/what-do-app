@@ -28,6 +28,13 @@ export default {
     this.commit('applyFilters');
   },
 
+  updatePosition(state, map) {
+    const center = map.getCenter();
+    const zoom = map.getZoom();
+    state.position.coords = [center.lat, center.lng];
+    state.zoom = zoom;
+  },
+
   toggleFilter(state, f) {
     try {
       if (state.filters.includes(f)) {
@@ -44,9 +51,8 @@ export default {
   applyFilters(state) {
     state.results = state.locations.slice(0);
     if (state.filters.length > 0 || state.search.length > 0) {
-      state.results = state.locations.filter(
-        (location) => state.filters.includes(location.category),
-      );
+      // eslint-disable-next-line max-len
+      state.results = state.locations.filter((location) => state.filters.includes(location.category));
     }
   },
 };

@@ -4,9 +4,11 @@
     <MainPanel />
     <l-map
       class="map"
-      v-model="zoom"
-      v-model:zoom="zoom"
-      :center="[34.6937, 135.5023]"
+      ref="map"
+      :zoom="zoom"
+      :center="center"
+      @move="$store.commit('updatePosition',
+        this.$refs.map.leafletObject)"
     >
       <l-tile-layer
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
@@ -56,10 +58,12 @@ export default {
     // LPopup,
   },
   setup() {
+    const map = ref(null);
     const zoom = ref(12);
     const iconWidth = 55;
     const iconHeight = 55;
     const store = useStore();
+    const center = ref(store.state.LocationStore.position.coords);
     store.commit('updateLocations');
 
     function iconUrl() {
@@ -75,7 +79,9 @@ export default {
     }
 
     return {
+      map,
       zoom,
+      center,
       iconUrl,
       iconHtml,
       iconSize,
