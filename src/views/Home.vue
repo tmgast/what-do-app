@@ -7,8 +7,8 @@
       ref="map"
       :zoom="zoom"
       :center="center"
-      @move="$store.commit('updatePosition',
-        this.$refs.map.leafletObject)"
+      @move="$store.commit('updatePosition')"
+      @ready="$store.commit('registerMap', this.map.leafletObject)"
     >
       <l-tile-layer
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"

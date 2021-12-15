@@ -13,6 +13,7 @@ export default {
     filters: [],
     selected: null,
     search: '',
+    map: null,
   },
   mutations,
   actions,

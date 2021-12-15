@@ -1,6 +1,19 @@
 import APIService from '@/services/APIService';
 
 export default {
+  registerMap(state, map) {
+    console.log(map);
+    state.map = map;
+  },
+
+  updatePosition(state) {
+    const center = state.map.getCenter();
+    const zoom = state.map.getZoom();
+    state.position.coords = [center.lat, center.lng];
+    state.zoom = zoom;
+    console.log(state.position);
+  },
+
   updateLocations(state) {
     APIService.getLocations()
       .then((response) => {
@@ -26,13 +39,6 @@ export default {
     state.filters = [];
 
     this.commit('applyFilters');
-  },
-
-  updatePosition(state, map) {
-    const center = map.getCenter();
-    const zoom = map.getZoom();
-    state.position.coords = [center.lat, center.lng];
-    state.zoom = zoom;
   },
 
   toggleFilter(state, f) {
