@@ -14,10 +14,7 @@ const gauthOption = {
   fetch_basic_profile: 'false',
 };
 
-const app = createApp(App)
-  .use(GAuth, gauthOption)
-  .use(store)
-  .use(router)
+const app = createApp(App).use(GAuth, gauthOption).use(store).use(router)
   .mount('#app');
 
 store.state.auth = app.$gAuth;

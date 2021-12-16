@@ -14,7 +14,6 @@ export default {
     selected: null,
     search: '',
     bDirty: false,
-    map: null,
   },
   mutations,
   actions,

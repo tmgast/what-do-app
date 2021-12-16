@@ -1,7 +1,8 @@
 export default {
-  async getLogin({ commit, state }) {
+  async getLogin({ commit, state, rootState }) {
+    console.log(state);
     try {
-      const gUser = await state.auth.signIn();
+      const gUser = await rootState.auth.signIn();
 
       if (!gUser) {
         return;

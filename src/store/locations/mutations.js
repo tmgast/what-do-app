@@ -3,9 +3,8 @@ import APIService from '@/services/APIService';
 export default {
   updatePosition(state, map) {
     const center = map.getCenter();
-    const zoom = map.getZoom();
+    state.position.zoom = map.getZoom();
     state.position.coords = [center.lat, center.lng];
-    state.zoom = zoom;
     state.bDirty = true;
   },
 

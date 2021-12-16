@@ -99,4 +99,8 @@ export default {
   .map {
     z-index: 1;
   }
+
+  .leaflet-control-layers {
+    visibility: hidden;
+  }
 </style>
