@@ -21,7 +21,9 @@
         @click="$store.commit('selectLocation',
           {map: this.$refs.map.leafletObject, location: location._id})"
         >
-        <l-icon :html="iconHtml()" :icon-url="iconUrl()" :icon-size="iconSize()" />
+        <l-icon :icon-size="iconSize()">
+          <i class='material-icons'>person_outline</i>
+        </l-icon>
       </l-marker>
       </div>
     </l-map>
@@ -60,8 +62,6 @@ export default {
   setup() {
     const map = ref(null);
     const zoom = ref(12);
-    const iconWidth = 55;
-    const iconHeight = 55;
     const store = useStore();
     const center = ref(store.state.LocationStore.position.coords);
     store.commit('updateLocations');
@@ -70,12 +70,8 @@ export default {
       return image;
     }
 
-    function iconHtml() {
-      return '<i class="material-icons">person_outline</i>';
-    }
-
     function iconSize() {
-      return [iconWidth, iconHeight];
+      return [40, 40];
     }
 
     return {
@@ -83,7 +79,6 @@ export default {
       zoom,
       center,
       iconUrl,
-      iconHtml,
       iconSize,
     };
   },
@@ -102,5 +97,17 @@ export default {
 
   .leaflet-control-layers {
     visibility: hidden;
+  }
+
+  .leaflet-marker-icon {
+    width: 100%;
+    height: 100%;
+    border-radius: 50px;
+    background-color: #ccc;
+    text-align: center;
+
+    i {
+      line-height: 40px;
+    }
   }
 </style>
