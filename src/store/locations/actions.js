@@ -1,5 +1,5 @@
 export default {
-  flyTo(state, location) {
-    state.map.flyTo(location, 5);
+  flyTo(state, { map, location }) {
+    map.panTo([location.latitude, location.longitude], 5);
   },
 };

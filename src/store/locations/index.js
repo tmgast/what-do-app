@@ -13,6 +13,7 @@ export default {
     filters: [],
     selected: null,
     search: '',
+    bDirty: false,
     map: null,
   },
   mutations,

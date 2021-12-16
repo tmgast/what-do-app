@@ -7,8 +7,7 @@
       ref="map"
       :zoom="zoom"
       :center="center"
-      @move="$store.commit('updatePosition')"
-      @ready="$store.commit('registerMap', this.map.leafletObject)"
+      @move="$store.commit('updatePosition', this.$refs.map.leafletObject)"
     >
       <l-tile-layer
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
@@ -19,7 +18,8 @@
         v-for="location in $store.getters.getLocations"
         :key="location._id"
         :lat-lng="[location.latitude, location.longitude]"
-        @click="$store.commit('selectLocation', location._id)"
+        @click="$store.commit('selectLocation',
+          {map: this.$refs.map.leafletObject, location: location._id})"
         >
         <l-icon :html="iconHtml()" :icon-url="iconUrl()" :icon-size="iconSize()" />
       </l-marker>

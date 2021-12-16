@@ -1,20 +1,16 @@
 import APIService from '@/services/APIService';
 
 export default {
-  registerMap(state, map) {
-    console.log(map);
-    state.map = map;
-  },
-
-  updatePosition(state) {
-    const center = state.map.getCenter();
-    const zoom = state.map.getZoom();
+  updatePosition(state, map) {
+    const center = map.getCenter();
+    const zoom = map.getZoom();
     state.position.coords = [center.lat, center.lng];
     state.zoom = zoom;
-    console.log(state.position);
+    state.bDirty = true;
   },
 
   updateLocations(state) {
+    state.bDirty = false;
     APIService.getLocations()
       .then((response) => {
         state.locations = response.data;
@@ -25,14 +21,11 @@ export default {
       });
   },
 
-  selectLocation(state, l) {
-    APIService.getLocation(l)
-      .then((response) => {
-        state.selected = response.data;
-      })
-      .catch((error) => {
-        console.log(`Error: ${error.message}`);
-      });
+  selectLocation(state, { map, location }) {
+    APIService.getLocation(location).then((response) => {
+      state.selected = response.data;
+      this.dispatch('flyTo', { map, location: state.selected });
+    });
   },
 
   clearFilters(state) {
