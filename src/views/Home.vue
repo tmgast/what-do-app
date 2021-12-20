@@ -21,7 +21,7 @@
         @click="$store.commit('selectLocation',
           {map: this.$refs.map.leafletObject, location: location._id})"
         >
-        <l-icon :icon-size="iconSize()">
+        <l-icon className="blue-grey darken-2" :icon-size="iconSize()">
           <i class='material-icons'>{{ getIcon(location.category) }}</i>
         </l-icon>
       </l-marker>
@@ -109,7 +109,7 @@ export default {
     width: 100%;
     height: 100%;
     border-radius: 50px;
-    background-color: #ccc;
+    color: #fff;
     text-align: center;
 
     i {
