@@ -1,6 +1,7 @@
 import { createStore } from 'vuex';
 import LocationStore from './locations';
 import UserStore from './users';
+import CategoryStore from './categories';
 
 export default createStore({
   state: {
@@ -14,5 +15,6 @@ export default createStore({
   modules: {
     LocationStore,
     UserStore,
+    CategoryStore,
   },
 });

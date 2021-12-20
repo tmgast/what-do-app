@@ -12,4 +12,7 @@ export default {
   getLocation(id) {
     return apiClient.get(`/locations/${id}`);
   },
+  getCategories() {
+    return apiClient.get('/categories');
+  },
 };

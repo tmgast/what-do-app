@@ -15,7 +15,7 @@
             <span>filters</span>
           </a>
             <Component :is="MapQuickFilter"
-              v-for="poi in quickFilters"
+              v-for="poi in categories"
               :key="poi.name"
               :icon="poi.icon"
               :enabled="hasFilter(poi.name)"
@@ -31,20 +31,7 @@ import MapQuickFilter from '@/components/MapQuickFilter.vue';
 
 const store = useStore();
 
-const quickFilters = [
-  {
-    name: 'landmark',
-    icon: 'temple_buddhist',
-  },
-  {
-    name: 'music',
-    icon: 'theater_comedy',
-  },
-  {
-    name: 'park',
-    icon: 'attractions',
-  },
-];
+store.commit('updateCategories');
 
 function hasFilter(f) {
   return store.getters.getActiveFilters.indexOf(f) !== -1;
