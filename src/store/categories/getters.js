@@ -1,5 +1,9 @@
 export default {
-  async getCategories(state) {
-    return state.categories;
+  getCategories(state) {
+    return JSON.parse(JSON.stringify(state.categories));
+  },
+
+  hasCategories(state) {
+    return state.categories.length > 0;
   },
 };

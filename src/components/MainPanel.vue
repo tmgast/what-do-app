@@ -7,7 +7,7 @@
       </div>
 
       <div class="filter-container">
-        <div>
+        <div v-if="$store.getters.hasCategories">
           <a
             class="waves-effect waves-light btn filter-btn blue-grey"
             @click="$store.commit('clearFilters')"
@@ -15,8 +15,8 @@
             <span>filters</span>
           </a>
             <Component :is="MapQuickFilter"
-              v-for="poi in categories"
-              :key="poi.name"
+              v-for="poi in $store.getters.getCategories"
+              :key="poi._id"
               :icon="poi.icon"
               :enabled="hasFilter(poi.name)"
               @click="$store.commit('toggleFilter', poi.name)" />
