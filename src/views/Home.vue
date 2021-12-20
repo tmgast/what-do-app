@@ -22,7 +22,7 @@
           {map: this.$refs.map.leafletObject, location: location._id})"
         >
         <l-icon :icon-size="iconSize()">
-          <i class='material-icons'>person_outline</i>
+          <i class='material-icons'>{{ getIcon(location.category) }}</i>
         </l-icon>
       </l-marker>
       </div>
@@ -74,12 +74,18 @@ export default {
       return [40, 40];
     }
 
+    function getIcon(c) {
+      const catIcon = store.getters.getCategories.find((v) => v.name === c);
+      return catIcon.icon;
+    }
+
     return {
       map,
       zoom,
       center,
       iconUrl,
       iconSize,
+      getIcon,
     };
   },
 };
