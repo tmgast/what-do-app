@@ -21,7 +21,7 @@
         @click="$store.commit('selectLocation',
           {map: this.$refs.map.leafletObject, location: location._id})"
         >
-        <l-icon className="blue-grey darken-2" :icon-size="iconSize()">
+        <l-icon :className="getColorClass(location.category)" :icon-size="iconSize()">
           <i class='material-icons'>{{ getIcon(location.category) }}</i>
         </l-icon>
       </l-marker>
@@ -79,6 +79,11 @@ export default {
       return catIcon.icon;
     }
 
+    function getColorClass(c) {
+      const catIcon = store.getters.getCategories.find((v) => v.name === c);
+      return catIcon.colorClass;
+    }
+
     return {
       map,
       zoom,
@@ -86,6 +91,7 @@ export default {
       iconUrl,
       iconSize,
       getIcon,
+      getColorClass,
     };
   },
 };
