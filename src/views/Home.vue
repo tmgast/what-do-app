@@ -117,6 +117,7 @@ export default {
     border-radius: 50px;
     color: #fff;
     text-align: center;
+    box-shadow: 2px 2px 10px #000;
 
     i {
       line-height: 40px;
