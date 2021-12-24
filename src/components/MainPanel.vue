@@ -18,6 +18,7 @@
               v-for="poi in $store.getters.getCategories"
               :key="poi._id"
               :icon="poi.icon"
+              :colorClass="poi.colorClass"
               :enabled="hasFilter(poi.name)"
               @click="$store.commit('toggleFilter', poi.name)" />
         </div>

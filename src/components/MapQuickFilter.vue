@@ -1,7 +1,7 @@
 <template>
   <a
-    class="btn-floating waves-effect waves-light"
-    :class="props.enabled ?' deep-purple':'red lighten-2' "
+    class="btn-floating waves-effect waves-light "
+    :class="props.enabled ? props.colorClass : 'red lighten-2' "
     >
       <i class="material-icons">{{ props.icon }}</i>
   </a>
@@ -12,6 +12,7 @@ import { defineProps } from 'vue';
 
 const props = defineProps({
   icon: String,
+  colorClass: String,
   enabled: Boolean,
 });
 </script>
