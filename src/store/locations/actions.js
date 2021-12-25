@@ -1,5 +1,8 @@
 export default {
   flyTo(state, { map, location }) {
-    map.panTo([location.latitude, location.longitude], 5);
+    map.flyTo([location.latitude, location.longitude], 13, {
+      animate: true,
+      duration: 1.5,
+    });
   },
 };
