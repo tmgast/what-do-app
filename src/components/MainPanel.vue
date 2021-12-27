@@ -1,10 +1,16 @@
 <template>
   <div class="search-container">
-      <div class="search-wrapper">
+      <form class="search-wrapper" @submit.prevent="$store.commit('applySearch')">
         <div class="input-field search-field">
-          <input id="search" type="search" placeholder="Search">
+          <input
+            id="search"
+            type="search"
+            placeholder="Search"
+            :value="$store.getters.getSearch"
+            @change="updateSearch"
+          >
         </div>
-      </div>
+      </form>
 
       <div class="filter-container">
         <div v-if="$store.getters.hasCategories">
@@ -36,6 +42,10 @@ store.commit('updateCategories');
 
 function hasFilter(f) {
   return store.getters.getActiveFilters.indexOf(f) !== -1;
+}
+
+function updateSearch(e) {
+  store.commit('updateSearch', { value: e.target.value });
 }
 </script>
 

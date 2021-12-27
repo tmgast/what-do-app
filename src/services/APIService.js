@@ -12,6 +12,9 @@ export default {
   getLocation(id) {
     return apiClient.get(`/locations/${id}`);
   },
+  searchLocations(text) {
+    return apiClient.get(`/locations/search?search=${encodeURIComponent(text)}`);
+  },
   getCategories() {
     return apiClient.get('/categories');
   },

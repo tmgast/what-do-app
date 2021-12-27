@@ -6,4 +6,8 @@ export default {
   getLocations(state) {
     return state.results;
   },
+
+  getSearch(state) {
+    return state.search;
+  },
 };
