@@ -18,7 +18,7 @@ export default {
     if (state.search !== '') {
       this.commit('applySearch');
     } else {
-      APIService.getLocations()
+      APIService.getLocations(state.position)
         .then((response) => {
           state.locations = response.data;
           this.commit('applyFilters');

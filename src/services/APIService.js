@@ -6,8 +6,10 @@ const apiClient = axios.create({
 });
 
 export default {
-  getLocations() {
-    return apiClient.get('/locations');
+  getLocations(position) {
+    return apiClient.get(
+      `/locations?lat=${position.coords[0]}&lon=${position.coords[1]}&zoom=${position.zoom}`,
+    );
   },
   getLocation(id) {
     return apiClient.get(`/locations/${id}`);
