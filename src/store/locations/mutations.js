@@ -6,6 +6,8 @@ export default {
     state.position.zoom = map.getZoom();
     state.position.coords = [center.lat, center.lng];
     state.bDirty = true;
+
+    this.commit('updateLocations');
   },
 
   updateSearch(state, { value }) {
