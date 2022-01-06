@@ -5,9 +5,11 @@ export default {
     const center = map.getCenter();
     state.position.zoom = map.getZoom();
     state.position.coords = [center.lat, center.lng];
-    state.bDirty = true;
+    state.last = JSON.stringify(state.position);
 
-    this.commit('updateLocations');
+    setTimeout(() => {
+      this.commit('updateLocations');
+    }, 1000);
   },
 
   updateSearch(state, { value }) {
@@ -15,7 +17,15 @@ export default {
   },
 
   updateLocations(state) {
-    state.bDirty = false;
+    console.log(JSON.stringify(state.position), state.last);
+    if (
+      JSON.stringify(state.position) !== state.last
+      || JSON.stringify(state.position) === state.poll
+    ) {
+      console.log(JSON.stringify(state.position), state.last);
+      console.log('canceled');
+      return;
+    }
 
     if (state.search !== '') {
       this.commit('applySearch');
@@ -24,6 +34,7 @@ export default {
         .then((response) => {
           state.locations = response.data;
           this.commit('applyFilters');
+          state.poll = JSON.stringify(state.position);
         })
         .catch((error) => {
           console.log(error);

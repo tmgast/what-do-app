@@ -8,6 +8,8 @@ export default {
       coords: [34.6937, 135.5023],
       zoom: 10,
     },
+    last: '',
+    poll: '',
     locations: [],
     results: [],
     filters: [],
