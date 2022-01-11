@@ -28,6 +28,7 @@ The app should function very similar between desktop and mobile.
   - [ ] show images
   - [ ] show YouTube videos
 - [ ] search
+  - [x] name
   - [ ] city
   - [ ] randomize
   - [ ] region
