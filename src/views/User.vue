@@ -1,13 +1,14 @@
 <template>
-    
+  <div>
+  </div>
 </template>
 
 <script>
 export default {
-    setup() {
-        
-    },
-}
+  setup() {
+
+  },
+};
 </script>
 
 <style lang="scss">
