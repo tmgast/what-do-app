@@ -32,7 +32,7 @@
   </div>
 </template>
 
-<script setup>
+<script lang="ts" setup>
 import { useStore } from 'vuex';
 import MapQuickFilter from '@/components/MapQuickFilter.vue';
 
